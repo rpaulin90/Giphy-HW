@@ -6,52 +6,52 @@
 
 var initialButtons = ["cat", "dog", "guinea pig", "elephant", "snow leopard", "mini aussie"];
 
-for(var x = 0; x < initialButtons.length; x++){
+var createButton = function(text){
     var new_button = $("<button>");
-    new_button.addClass("GifBtn")
-    new_button.text(initialButtons[x]);
+    new_button.addClass("GifBtn");
+    new_button.text(text);
     $(".buttonContainer").append(new_button);
 }
 
-$("#searchButton").on("click",function(event){
+for (var x = 0; x < initialButtons.length; x++) {
+    createButton(initialButtons[x]);
+}
+
+$("#searchButton").on("click", function (event) {
 
     event.preventDefault();
     var inputValue = $("#searchInput").val();
-    var new_button = $("<button>");
-    new_button.addClass("GifBtn")
-    new_button.text(inputValue);
-    $(".buttonContainer").append(new_button);
+    createButton(inputValue);
 
-})
+});
 
-$(document).on("click",".GifBtn",function(){
+$(document).on("click", ".GifBtn", function () {
 
+    var apiURL = "https://api.giphy.com/v1/gifs/search?limit=10&rating=pg&q=";
+
+    var apiKey = "&api_key=dc6zaTOxFJmzC";
 
     $.ajax({
         method: "GET",
-        url: "https://api.giphy.com/v1/gifs/search?q=" +
-        $(this).text() + "&api_key=dc6zaTOxFJmzC&limit=10&rating=pg"
-    }).done(function(response){
+        url: apiURL + $(this).text() + apiKey
+    }).done(function (response) {
 
+        for (var i = 0; i < 10; i++) {
 
-        for(var i = 0; i < 10; i++){
+            var img_tag = $("<img>");
 
-                var img_tag = $("<img>");
+            var rating_p = $("<p>");
 
-                var rating_p = $("<p>")
+            img_tag.attr("src", response.data[i].images.fixed_height.url);
 
-                img_tag.attr("src", response.data[i].images.fixed_height.url);
+            rating_p.html(response.data[i].rating);
 
-                rating_p.html(response.data[i].rating);
+            $("#gifContainer").append(img_tag);
 
-                $("#gifContainer").append(img_tag);
-
-                $("#gifContainer").append(rating_p);
+            $("#gifContainer").append(rating_p);
 
         }
 
     });
-
-
 
 })
