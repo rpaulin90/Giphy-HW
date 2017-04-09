@@ -29,7 +29,7 @@ $(document).on("click",".GifBtn",function(){
 
     $.ajax({
         method: "GET",
-        url: "http://api.giphy.com/v1/gifs/search?q=" +
+        url: "https://api.giphy.com/v1/gifs/search?q=" +
         $(this).text() + "&api_key=dc6zaTOxFJmzC&limit=10&rating=pg"
     }).done(function(response){
 
