@@ -105,7 +105,9 @@ $(document).on("click", ".GIF", function () {
     }
 });
 
-$(".clean").on("click",function () {
+$(".clean").on("click",function (event) {
+
+    event.preventDefault();
 
     $("#gifContainer").empty();
 
