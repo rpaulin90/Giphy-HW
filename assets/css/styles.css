@@ -1,0 +1,39 @@
+.GIF_Div {
+
+    border: 5px dotted #76b4a3;
+    padding: 10px;
+    margin:10px;
+    background-color: transparent;
+
+}
+
+img {
+
+    border: 2px solid papayawhip;
+
+}
+
+#firstPanel {
+
+    margin-top: 10px;
+
+}
+
+.GifBtn {
+    margin: 10px;
+}
+
+form{
+    margin:10px 0 10px 0;
+}
+
+p {
+    color: #76b4a3;
+}
+
+body {
+    
+    background-image: url("../images/dust.png");
+    
+}
+
