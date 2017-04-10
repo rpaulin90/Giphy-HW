@@ -10,15 +10,15 @@ var createButton = function(text){
     var new_button = $("<button>");
     new_button.addClass("GifBtn btn btn-primary");
     new_button.text(text);
+    new_button.attr("status","unpressed");
     $(".buttonContainer").append(new_button);
 }
 
 for (var x = 0; x < initialButtons.length; x++) {
     createButton(initialButtons[x]);
-    $(".GifBtn").attr("status","unpressed");
 }
 
-$("#searchButton").on("click", function (event) {
+$("#searchButton").on("click", function(event) {
 
     event.preventDefault();
     var inputValue = $("#searchInput").val();
