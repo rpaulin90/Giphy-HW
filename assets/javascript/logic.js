@@ -51,8 +51,6 @@ $(document).on("click", ".GifBtn", function () {
 
                 var rating_p = $("<p>");
 
-                img_tag.attr("src", response.data[i].images.fixed_height_still.url);
-
                 gifDiv.addClass("GIF_Div");
 
                 img_tag.addClass("GIF");
@@ -62,6 +60,12 @@ $(document).on("click", ".GifBtn", function () {
                 img_tag.attr("value", buttonText);
 
                 img_tag.attr("number", [i]);
+
+                img_tag.attr("animatedimg",response.data[i].images.fixed_height.url);
+
+                img_tag.attr("stillimg",response.data[i].images.fixed_height_still.url);
+
+                img_tag.attr("src", img_tag.attr("stillimg"));
 
                 rating_p.text("GIF Rating: " + response.data[i].rating);
 
@@ -85,23 +89,14 @@ $(document).on("click", ".GIF", function () {
     var thisBtn = $(this).attr("class", "GIF");
 
     if (thisBtn.attr("state") === "still") {
-        $.ajax({
-            method: "GET",
-            url: apiURL + thisBtn.attr("value") + apiKey
-        }).done(function (response) {
-            thisBtn.attr("src", response.data[thisBtn.attr("number")].images.fixed_height.url);
+            thisBtn.attr("src",thisBtn.attr("animatedimg"));
             thisBtn.attr("state", "animated");
-        })
     }
 
     else {
-        $.ajax({
-            method: "GET",
-            url: apiURL + thisBtn.attr("value") + apiKey
-        }).done(function (response) {
-            thisBtn.attr("src", response.data[thisBtn.attr("number")].images.fixed_height_still.url);
-            thisBtn.attr("state", "still");
-        })
+
+        thisBtn.attr("src",thisBtn.attr("stillimg"));
+        thisBtn.attr("state", "still");
     }
 });
 

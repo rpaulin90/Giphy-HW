@@ -25,6 +25,7 @@ img {
 
 #searchInput{
     margin:10px 0 10px 0;
+    border: 1px solid cornflowerblue;
 }
 
 p {
@@ -35,5 +36,10 @@ body {
     
     background-image: url("../images/dust.png");
     
+}
+
+.jumbotron {
+    border-color: #bce8f1;
+    background-color: #bce8f1;
 }
 
